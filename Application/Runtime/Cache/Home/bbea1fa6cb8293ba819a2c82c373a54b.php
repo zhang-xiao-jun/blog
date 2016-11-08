@@ -75,6 +75,8 @@
     </script>
     <!-- Baidu Button END -->
     <div class="blank"></div>
+
+    <!--最新文章 与 点击排行 外部引入-->
     <div class="news">
       <h3>
     <p>最新<span>文章</span></p>

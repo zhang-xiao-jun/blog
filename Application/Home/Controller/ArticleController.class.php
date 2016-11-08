@@ -2,7 +2,7 @@
     namespace Home\Controller;
     use Think\Controller;
     //定义文章详细界面
-    class ArticleController extends Controller{
+    class ArticleController extends BaseController{
         //显示文章界面
         public function lst(){
             //1.显示文章详细界面
@@ -13,15 +13,8 @@
                 $data['content'] = htmlspecialchars_decode($data['content']);
                 $this->assign('data',$data);
 
-            //2.显示最新文章
-                $sql = "select id,title from blogag_article where is_del = 0 order by id desc limit 5";
-                $new_article = $article->query($sql);
-                $this->assign('new_article',$new_article);
-
-            //3.显示热门文章
-                $sql = "select id,title,hits from blogag_article where is_del = 0 order by hits desc limit 5";
-                $hits_article = $article->query($sql);
-                $this->assign("hits_article",$hits_article);
+                /*显示最新和热门文章*/
+                $this->nowAndHot();
 
             //4.显示分类
                 $sql = "select b.cate_name from blogag_article as a left join blogag_cate as b on a.pid = b.cate_id where a.id = $id";

@@ -86,7 +86,7 @@
 
          //显示分页
              $count = $article->where("is_del = 0")->count();
-             $Page  = new \Think\Page($count,1);//param2 每页显示的条数
+             $Page  = new \Think\Page($count,6);//param2 每页显示的条数
             //设置样式
             $Page->setConfig('header', '<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
             $Page->setConfig('prev', '上一页');

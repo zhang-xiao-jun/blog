@@ -91,7 +91,7 @@
       </h3>
       <ul class = "cloud">
         <volist name="cateData" id="cateVo">
-          <li><a href="/"><font size="3">{$cateVo.cate_name}()</font></a></li>
+          <li><a href="/index.php/Home/ArticleList/lst/id/{$cateVo.cate_id}"><font size="3">{$cateVo.cate_name}({$cateVo.num})</font></a></li>
         </volist>
       </ul>
 

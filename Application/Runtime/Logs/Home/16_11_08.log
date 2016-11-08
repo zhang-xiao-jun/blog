@@ -1,0 +1,9 @@
+[ 2016-11-08T21:45:16+08:00 ] 127.0.0.1 /index.php/Home/ArticleList/lst/id/7
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column '' in 'field list'
+
+[ 2016-11-08T22:40:57+08:00 ] 127.0.0.1 /index.php/Home/Article/lst/id/12
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+
+[ 2016-11-08T22:43:36+08:00 ] 127.0.0.1 /index.php/Home/Article/lst/id/12
+ERR: Think\Controller:nowAndHot方法不存在！
+

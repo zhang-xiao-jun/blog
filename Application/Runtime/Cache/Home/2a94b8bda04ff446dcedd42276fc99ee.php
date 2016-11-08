@@ -101,7 +101,7 @@
         <p>标签<span>云</span></p>
       </h3>
       <ul class = "cloud">
-        <?php if(is_array($cateData)): $i = 0; $__LIST__ = $cateData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cateVo): $mod = ($i % 2 );++$i;?><li><a href="/"><font size="3"><?php echo ($cateVo["cate_name"]); ?>()</font></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
+        <?php if(is_array($cateData)): $i = 0; $__LIST__ = $cateData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cateVo): $mod = ($i % 2 );++$i;?><li><a href="/index.php/Home/ArticleList/lst/id/<?php echo ($cateVo["cate_id"]); ?>"><font size="3"><?php echo ($cateVo["cate_name"]); ?>(<?php echo ($cateVo["num"]); ?>)</font></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
       </ul>
 
       <!-- 友情链接 -->
