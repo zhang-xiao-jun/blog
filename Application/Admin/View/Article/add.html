@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title>拼图后台管理-后台管理</title>
+<link rel="stylesheet" href="__ADMIN__/css/pintuer.css">
+<link rel="stylesheet" href="__ADMIN__/css/admin.css">
+<script src="__ADMIN__/js/jquery.js"></script>
+<script src="__ADMIN__/js/pintuer.js"></script>
+<script src="__ADMIN__/js/respond.js"></script>
+<script src="__ADMIN__/js/admin.js"></script>
+ <!-- 引入ueditor -->
+ <script  src="__ADMIN__/ueditor/ueditor.config.js"></script>
+  <script src="__ADMIN__/ueditor/ueditor.all.js"></script>
+  <!-- 实例化编辑器 -->
+  <script type="text/javascript">
+    $(function(){
+      var ue = UE.getEditor('container');
+    };
+
+  </script>
+
+  <!--图像上传预览-->
+  <script type="text/javascript">
+    //图片上传预览    IE是用了滤镜。
+    function previewImage(file)
+    {
+      var MAXWIDTH  = 260;
+      var MAXHEIGHT = 180;
+      var div = document.getElementById('preview');
+      if (file.files && file.files[0])
+      {
+        div.innerHTML ='<img id=imghead>';
+        var img = document.getElementById('imghead');
+        img.onload = function(){
+          var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+          img.width  =  rect.width;
+          img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+          img.style.marginTop = rect.top+'px';
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt){img.src = evt.target.result;}
+        reader.readAsDataURL(file.files[0]);
+      }
+      else //兼容IE
+      {
+        var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+        file.select();
+        var src = document.selection.createRange().text;
+        div.innerHTML = '<img id=imghead>';
+        var img = document.getElementById('imghead');
+        img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+        div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+      }
+    }
+    function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+      var param = {top:0, left:0, width:width, height:height};
+      if( width>maxWidth || height>maxHeight )
+      {
+        rateWidth = width / maxWidth;
+        rateHeight = height / maxHeight;
+
+        if( rateWidth > rateHeight )
+        {
+          param.width =  maxWidth;
+          param.height = Math.round(height / rateWidth);
+        }else
+        {
+          param.width = Math.round(width / rateHeight);
+          param.height = maxHeight;
+        }
+      }
+      param.left = Math.round((maxWidth - param.width) / 2);
+      param.top = Math.round((maxHeight - param.height) / 2);
+      return param;
+    }
+
+  </script>
+
+  <!-- 调整预览图片的位置 -->
+  <style>
+    #preview{
+      position:absolute;
+      left:350px;
+      top:320px;
+    }
+  </style>
+
+  <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+<link href="/favicon.ico" rel="bookmark icon" />
+  <!--调整表单的宽度-->
+
+</head>
+
+<body>
+<div class="lefter">
+  <div class="logo"><a href="#" target="_blank"><img src="__ADMIN__/images/logo.png" alt="后台管理系统" /></a></div>
+</div>
+<div class="righter nav-navicon" id="admin-nav">
+
+  <!--公共部分-->
+  <include file="Public/header" />
+
+</div>
+<div class="admin">
+  <div class="tab">
+  
+    <div class="tab-head"> <strong>文章设置</strong>
+      <ul class="tab-nav">
+        <li class="active"><a href="#tab-set">添加文章</a></li>
+        <li><a href="__CONTROLLER__/lst">文章显示</a></li>
+      </ul>
+    </div>
+
+    <div class="tab-body"> <br />
+
+    <!--添加内容部分-->
+      <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x" action="__ACTION__" enctype="multipart/form-data">
+          <!--1.文章标题-->
+          <div class="form-group">
+            <div class="label">
+              <label for="sitename">文章标题</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="sitename" name="title" size="50" placeholder="标题名称" data-validate="required:请填写你的文章标题" />
+            </div>
+          </div>
+
+
+          <!--2.所属类别-->
+           <div class="form-group">
+            <div class="label">
+              <label for="sitename">所属类别</label>
+            </div>
+            <div class="field">
+              <select name="pid">
+                <option value="0">主类别</option>
+                <volist name="data" id="vo">
+                  <!-- disabled 表单不能选中 -->
+                  <option value="{$vo.cate_id}"
+                    <if condition="$vo.cate_pid eq 0">disabled="disabled"</if>
+                  >{$vo.level|str_repeat="-",###*8}{$vo.cate_name}</option>
+                </volist>
+              </select>
+            </div>
+          </div>
+
+          <!--3.关键词-->
+          <div class="form-group">
+            <div class="label">
+              <label for="sitename">关键词</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="sitename" name="keyword" size="50" placeholder="关键词" data-validate="required:请填写你的文章关键词" />
+            </div>
+          </div>
+
+          <!--4.是否推荐-->
+          <div class="form-group">
+            <div class="label">
+              <label for="sitename">推荐</label>
+            </div>
+            <div class="field">
+              <input type="radio" name="isrecommend" value="0" checked="checked">不推荐
+              <input type="radio" naem="isrecommend" value="1">推荐
+            </div>
+          </div>
+
+          <!--5.文章作者-->
+          <div class="form-group">
+            <div class="label">
+              <label for="sitename">文章作者</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="sitename" name="author" size="50" placeholder="文章作者" data-validate="required:请填写你的文章作者" />
+            </div>
+          </div>
+          <br/><br/>
+
+
+          <!-- 6.图片上传 -->
+          <div class="form-group">
+            <div class="label"><label for="logo">上传图片</label></div>
+            <div class="field">
+              <a class="button input-file" href="javascript:void(0);" >+ 浏览文件<input size="100" type="file" name="images"  onchange="previewImage(this)" data-validate="required:请选择上传文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" id="upload_img"/></a>
+            </div>
+          </div>
+          <br/><br/><br/>
+
+          <div id="preview">
+            <img id="imghead" width=219 height=auto border=0 src='__PUBLIC__/Admin/images/addpic.png'>
+          </div>
+
+          <!--加一个点击事件-->
+          <script>
+            $("#imghead").bind('click',function(){
+              $("#upload_img").click();
+            })
+          </script>
+
+
+          <!--7.文章作者-->
+          <div class="form-group">
+            <div class="label">
+              <label for="sitename">文章介绍</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="sitename" name="introduce" size="50" placeholder="文章介绍" data-validate="required:请填写你的文章介绍" />
+            </div>
+          </div>
+
+          <!--8.内容描述-->
+          <div class="form-group">
+            <div class="label">
+              <label for="readme">文章内容</label>
+            </div>
+            <div class="field">
+              <script id="container" name="content" type="text/plain">
+
+              </script>
+            </div>
+            <!-- 实例化编辑器 -->
+            <script type="text/javascript">
+              var ue = UE.getEditor('container');
+            </script>
+          </div>
+          
+          <!--9.排序-->
+          <div class="form-group">
+            <div class="label">
+              <label for="siteurl">文章排序</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="siteurl" name="orders" size="50" placeholder="请填写排序" data-validate="required:请填写排序" />
+            </div>
+          </div>
+           
+           <!--添加操作-->    
+          <div class="form-button">
+            <button class="button bg-main" type="submit">添加</button>
+            <!-- reset 按钮中的重置按钮 -->
+            <button class="button bg-main" type="reset" id="btnReset">清空内容</button>
+          </div>
+          <!-- 清空内容 -->
+          <script type="text/javascript">
+           $("#btnReset").bind('click',function(){
+             $("form")[0].reset();
+           })
+          </script>
+
+        </form>
+      </div>
+      <div class="tab-panel" id="tab-email">邮件设置</div>
+      <div class="tab-panel" id="tab-upload">上传设置</div>
+      <div class="tab-panel" id="tab-visit">访问限制</div>
+    </div>
+  </div>
+  <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">拼图前端框架</a>构建</p>
+</div>
+</body>
+</html>

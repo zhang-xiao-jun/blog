@@ -1,0 +1,9 @@
+[ 2016-07-28T20:45:14+08:00 ] 127.0.0.1 /
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column '' in 'field list'
+
+[ 2016-07-28T20:54:03+08:00 ] 127.0.0.1 /
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.cate_name' in 'field list'
+
+[ 2016-07-28T20:54:48+08:00 ] 127.0.0.1 /
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.id' in 'on clause'
+

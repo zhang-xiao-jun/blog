@@ -1,0 +1,6 @@
+[ 2016-11-03T21:53:47+08:00 ] 127.0.0.1 /index.php/Home/Register/lst
+ERR: 无法加载控制器:Register
+
+[ 2016-11-03T21:55:21+08:00 ] 127.0.0.1 /index.php/Home/Register/lst
+ERR: 无法加载控制器:Register
+

@@ -1,0 +1,6 @@
+[ 2016-11-04T20:57:11+08:00 ] 127.0.0.1 /
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2016-11-04T22:54:59+08:00 ] 127.0.0.1 /index.php/Home/Register/doRegister
+ERR: 不存在的图像文件
+

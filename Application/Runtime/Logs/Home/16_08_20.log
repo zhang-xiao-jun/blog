@@ -1,0 +1,39 @@
+[ 2016-08-20T13:11:26+08:00 ] 127.0.0.1 /
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc )' at line 1
+
+[ 2016-08-20T13:12:04+08:00 ] 127.0.0.1 /
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc )' at line 1
+
+[ 2016-08-20T13:17:13+08:00 ] 127.0.0.1 /
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'hots' in 'order clause'
+
+[ 2016-08-20T15:39:48+08:00 ] 127.0.0.1 /index.php/Home/Article/lst
+ERR: 无法加载控制器:Article
+
+[ 2016-08-20T15:40:44+08:00 ] 127.0.0.1 /index.php/Home/Article/lst
+ERR: 无法加载控制器:Article
+
+[ 2016-08-20T15:43:26+08:00 ] 127.0.0.1 /index.php/Home/Article/lst
+ERR: 无法加载控制器:Article
+
+[ 2016-08-20T15:44:17+08:00 ] 127.0.0.1 /index.php/Home/Article/lst
+ERR: 无法加载控制器:Article
+
+[ 2016-08-20T15:45:22+08:00 ] 127.0.0.1 /index.php/Home/Article/lst
+ERR: 无法加载控制器:Article
+
+[ 2016-08-20T16:05:50+08:00 ] 127.0.0.1 /index.php/Home/Index/index.php/Home/Article/lst
+ERR: 非法操作:index.php
+
+[ 2016-08-20T16:06:11+08:00 ] 127.0.0.1 /index.php/Home/Article/lst
+ERR: 无法加载控制器:Article
+
+[ 2016-08-20T16:08:05+08:00 ] 127.0.0.1 /index.php/Home/Article/css/base.css
+ERR: 非法操作:css
+
+[ 2016-08-20T16:08:05+08:00 ] 127.0.0.1 /index.php/Home/Article/js/silder.js
+ERR: 非法操作:js
+
+[ 2016-08-20T16:08:05+08:00 ] 127.0.0.1 /index.php/Home/Article/css/new.css
+ERR: 非法操作:css
+

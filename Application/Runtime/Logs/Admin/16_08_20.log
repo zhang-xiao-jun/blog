@@ -1,0 +1,40 @@
+[ 2016-08-20T12:04:07+08:00 ] 127.0.0.1 /index.php/Admin/Article/change_recom?id=7&value=1&field=isrecommend&_=1471665846300
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000887s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001377s ]
+SQL: SHOW COLUMNS FROM `blogag_article` [ RunTime:0.0127s ]
+SQL: UPDATE `blogag_article` SET `isrecommend`='0' WHERE ( id = 7 ) [ RunTime:0.0013s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002623s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002742s ]
+
+[ 2016-08-20T12:04:09+08:00 ] 127.0.0.1 /index.php/Admin/Article/change_recom?id=7&value=0&field=isrecommend&_=1471665848871
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000883s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001386s ]
+SQL: SHOW COLUMNS FROM `blogag_article` [ RunTime:0.0117s ]
+SQL: UPDATE `blogag_article` SET `isrecommend`='1' WHERE ( id = 7 ) [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002641s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002760s ]
+
+[ 2016-08-20T12:14:51+08:00 ] 127.0.0.1 /index.php/Admin/Article/change_recom?id=9&value=0&field=isrecommend&_=1471666485124
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001317s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002105s ]
+SQL: SHOW COLUMNS FROM `blogag_article` [ RunTime:0.0048s ]
+SQL: UPDATE `blogag_article` SET `isrecommend`='1' WHERE ( id = 9 ) [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001257s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001310s ]
+
+[ 2016-08-20T12:14:52+08:00 ] 127.0.0.1 /index.php/Admin/Article/change_recom?id=9&value=0&field=isrecommend&_=1471666491081
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000718s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001210s ]
+SQL: SHOW COLUMNS FROM `blogag_article` [ RunTime:0.0123s ]
+SQL: UPDATE `blogag_article` SET `isrecommend`='1' WHERE ( id = 9 ) [ RunTime:0.0008s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002365s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002488s ]
+

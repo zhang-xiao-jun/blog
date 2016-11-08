@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>张俊个人博客</title>
+  <meta name="keywords" content="个人博客模板,博客模板" />
+  <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
+  <link href="__PUBLIC__/Home/css/base.css" rel="stylesheet">
+  <link href="__PUBLIC__/Home/css/index.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="__PUBLIC__/Home/js/modernizr.js"></script>
+  <![endif]-->
+  <style>
+     .cloud  li  {
+      width:150px;  margin-left:12px;  display:inline-block;  border-radius:8px;  margin-top:10px;  text-align:center;
+    }
+     .cloud  li a {
+      color : #fff;
+    }
+    .cloud  li:nth-child(8n-7) { background: #8A9B0F }
+    .cloud  li:nth-child(8n-6) { background: #EB6841 }
+    .cloud  li:nth-child(8n-5) { background: #3FB8AF }
+    .cloud  li:nth-child(8n-4) { background: #FE4365 }
+    .cloud  li:nth-child(8n-3) { background: #FC9D9A }
+    .cloud  li:nth-child(8n-2) { background: #EDC951 }
+    .cloud  li:nth-child(8n-1) { background: #C8C8A9 }
+    .cloud  li:nth-child(8n) { background: #83AF9B }
+    .cloud  li:first-child { background: #036564 }
+    .cloud  li:last-child { background: #3299BB }
+    .cloud  li:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
+  </style>
+</head>
+<body>
+<header>
+  <div id="logo"><a href="/"></a></div>
+  <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span>
+    <span class="en">Protal</span></a><a href="about.html"><span>关于我</span>
+    <span class="en">About</span></a><a href="newlist.html"><span>慢生活</span>
+    <span class="en">Life</span></a><a href="moodlist.html"><span>碎言碎语</span>
+    <span class="en">Doing</span></a><a href="share.html"><span>模板分享</span>
+    <span class="en">Share</span></a><a href="knowledge.html"><span>学无止境</span>
+    <span class="en">Learn</span></a><a href="book.html"><span>留言版</span>
+    <span class="en">Gustbook</span></a></nav>
+  </nav>
+</header>
+<div class="banner">
+  <section class="box">
+    <ul class="texts">
+      <p>灾难总是接踵而至，这正是世间的常理。</p>
+      <p>只要解释一下，就有谁会来救你吗？</p>
+      <p>要是死了，就只能说明我不过是如此程度的男人。</p>
+    </ul>
+    <div class="avatar"><a href="#"><span>zhangjun</span></a> </div>
+  </section>
+</div>
+
+<article>
+  <h2 class="title_tj">
+    <p>文章<span>推荐</span></p>
+  </h2>
+
+  <div class="bloglist left">
+    <volist name="data" id="vo">
+    <h3>{$vo.title}</h3>
+    <figure><img src="__PUBLIC__/Uploads/Article/{$vo.thumb}"></figure>
+    <ul>
+      <p><a href="index.php/Home/Article/lst/id/{$vo.id}" style="cursor:pointer;">{$vo.introduce}...</a></p>
+      <a  href="index.php/Home/Article/lst/id/{$vo.id}" target="_blank" class="readmore">阅读全文>></a>
+    </ul>
+    <p class="dateview">
+      <span>发布时间：{$vo.addtime|date="Y-m-d",###}</span>
+      <span>作者：{$vo.author}</span>
+      <span>个人博客：[<a href="/news/life/">{$vo.cate_name}</a>]</span>
+    </p>
+    </volist>
+  </div>
+
+  <aside class="right">
+    <div class="weather">
+      <iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1">
+      </iframe>
+    </div>
+    <div class="news">
+
+      <!--最新文章 与 点击排行 外部引入-->
+      <include file="Public/newAndhot" />
+
+      <!--标签云-->
+      <h3>
+        <p>标签<span>云</span></p>
+      </h3>
+      <ul class = "cloud">
+        <volist name="cateData" id="cateVo">
+          <li><a href="/"><font size="3">{$cateVo.cate_name}()</font></a></li>
+        </volist>
+      </ul>
+
+      <!-- 友情链接 -->
+      <h3 class="links">
+        <p>友情<span>链接</span></p>
+      </h3>
+      <ul class="website">
+        <li><a href="/">个人博客</a></li>
+        <li><a href="/">谢泽文个人博客</a></li>
+        <li><a href="/">3DST技术网</a></li>
+        <li><a href="/">思衡网络</a></li>
+      </ul>
+    </div>
+    <!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
+    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script>
+    <script type="text/javascript" id="bdshell_js"></script>
+    <script type="text/javascript">
+      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/__PUBLIC__/Home/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+    </script>
+    <!-- Baidu Button END -->
+    <a href="/" class="weixin"> </a>
+  </aside>
+</article>
+<footer>
+  <p>Design by DanceSmile <a href="http://www.mycodes.net/" title="源码之家" target="_blank">源码之家</a> <a href="/">网站统计</a></p>
+</footer>
+<script src="__PUBLIC__/Home/js/silder.js"></script>
+</body>
+</html>

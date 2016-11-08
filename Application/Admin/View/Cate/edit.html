@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title>拼图后台管理-后台管理</title>
+<link rel="stylesheet" href="__ADMIN__/css/pintuer.css">
+<link rel="stylesheet" href="__ADMIN__/css/admin.css">
+<script src="__ADMIN__/js/jquery.js"></script>
+<script src="__ADMIN__/js/pintuer.js"></script>
+<script src="__ADMIN__/js/respond.js"></script>
+<script src="__ADMIN__/js/admin.js"></script>
+<link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+<link href="/favicon.ico" rel="bookmark icon" />
+  <!--调整表单的宽度-->
+  <style>
+    .input{
+      width:45%;
+    }
+  </style>
+</head>
+
+<body>
+<div class="lefter">
+  <div class="logo"><a href="#" target="_blank"><img src="__ADMIN__/images/logo.png" alt="后台管理系统" /></a></div>
+</div>
+<div class="righter nav-navicon" id="admin-nav">
+
+  <!--公共部分-->
+  <include file="Public/header" />
+
+</div>
+<div class="admin">
+  <div class="tab">
+  
+    <div class="tab-head"> <strong>分类设置</strong>
+      <ul class="tab-nav">
+        <li ><a href="{:U('Admin/Cate/add')}">添加分类</a></li>
+        <li><a href="{:U('Admin/Cate/index')}">分类显示</a></li>
+        <li class="active"><a href="#tab-set">修改分类</a></li>
+      </ul>
+    </div>
+
+    <div class="tab-body"> <br />
+
+    <!--添加内容部分-->
+      <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x" action="{:U('Admin/Cate/editok')}">
+          <!--分类名称-->
+          <div class="form-group">
+            <div class="label">
+              <label for="sitename">分类名称</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="sitename" name="cate_name" size="50" placeholder="分类名称" data-validate="required:请填写你的分类名称" value="{$data.cate_name}"/>
+            </div>
+          </div>
+
+          <!--所属类别-->
+           <div class="form-group">
+            <div class="label">
+              <label for="sitename">所属类别</label>
+            </div>
+            <div class="field">
+              <select name="cate_pid">
+                <option value="0">主类别</option>
+                <volist name="datas" id="vo">
+                  <option value="{$vo.cate_id}"
+                    <if condition="$data['cate_pid'] eq $vo['cate_id']">selected=selected</if>
+                  >{$vo.level|str_repeat="-",###*8}{$vo.cate_name}</option>
+                </volist>
+              </select>
+            </div>
+          </div>
+          
+          <!--内容描述-->
+          <div class="form-group">
+            <div class="label">
+              <label for="readme">分类描述</label>
+            </div>
+            <div class="field">
+              <textarea class="input" rows="5" cols="50" placeholder="请填写分类说明" data-validate="required:请填写分类说明" name="cate_remark">{$data.cate_remark}</textarea>
+            </div>
+          </div>
+          
+          <!--排序-->
+          <div class="form-group">
+            <div class="label">
+              <label for="siteurl">排序</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="siteurl" name="cate_order" size="50" placeholder="请填写排序" data-validate="required:请填写排序" value="{$data.cate_order}"/>
+            </div>
+          </div>
+           
+           <!--添加操作-->    
+          <div class="form-button">
+            <button class="button bg-main" type="submit">修改</button>
+            <input type="hidden" name="id" value="{$data.cate_id}">
+          </div>
+
+        </form>
+      </div>
+      <div class="tab-panel" id="tab-email">邮件设置</div>
+      <div class="tab-panel" id="tab-upload">上传设置</div>
+      <div class="tab-panel" id="tab-visit">访问限制</div>
+    </div>
+  </div>
+  <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">拼图前端框架</a>构建</p>
+</div>
+</body>
+</html>

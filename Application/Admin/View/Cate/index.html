@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>后台管理-分类信息显示表</title>
+    <link rel="stylesheet" href="__ADMIN__/css/pintuer.css">
+    <link rel="stylesheet" href="__ADMIN__/css/admin.css">
+    <script src="__ADMIN__/js/jquery.js"></script>
+    <script src="__ADMIN__/js/pintuer.js"></script>
+    <script src="__ADMIN__/js/respond.js"></script>
+    <script src="__ADMIN__/js/admin.js"></script>
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+    <link href="/favicon.ico" rel="bookmark icon" />
+    <script>
+        $(function(){
+            //添加操作
+             $("#btnadd").bind('click',function(){
+                window.location.href = "__CONTROLLER__/add";
+             })
+
+            //删除多条的操作
+            $("#btndel").bind('click',function(){
+                //得到选中的id
+                var che = $(":checkbox:checked");
+                if(che.length == 0){
+                    alert('请选择要删除的元素');
+                }  else {
+                    var res =   window.confirm("您确认删除吗?");
+                    //如果点 取消 返回不执行删除操作
+                    if(!res){
+                        return;
+                    }
+                   //定义数组来接收删除的元素
+                    var id = new Array();
+                    for(var i = 0;i<che.length;i++){
+                        //把jquery对象转化为dom对象
+                        id[i] = che[i].value;
+                    }
+                    var id = id.toString();
+                    window.location.href="/index.php/Admin/Cate/delAll/id/"+id;
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+<div class="lefter">
+    <div class="logo"><a href="#" target="_blank"><img src="__ADMIN__/images/logo.png" alt="后台管理系统" /></a></div>
+</div>
+<div class="righter nav-navicon" id="admin-nav">
+
+    <!--引入公共部分-->
+    <include file="Public/header" />
+
+
+</div>
+
+<div class="admin">
+
+    <div class="tab">
+        <div class="tab-head"> <strong>分类设置</strong>
+            <ul class="tab-nav">
+                <li ><a href="{:U('Admin/Cate/add')}">添加分类</a></li>
+                <li class="active"><a>分类显示</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+    </div>
+
+	<form method="post">
+    <div class="panel admin-panel">
+    	<div class="panel-head"><strong>内容列表</strong></div>
+        <div class="padding border-bottom">
+            <input type="button" class="button button-small checkall" name="checkall" checkfor="id[]" value="全选" />
+            <input type="button" class="button button-small border-green"  value="添加文章" id="btnadd" />
+            <input type="button" class="button button-small border-yellow" value="批量删除" id="btndel"/>
+            <input type="button" class="button button-small border-blue"   value="回收站" />
+        </div>
+
+        <!--列表list显示界面-->
+        <table class="table table-hover">
+        	<tr>
+                <th width="100">选择</th>
+                <th width="60">排序</th>
+                <th width="200">分类名称</th>
+                <th width="100">所属类别</th>
+                <th width="*">分类描述</th>
+                <th width="200">分类时间</th>
+                <th width="100">操作</th>
+            </tr>
+
+            <volist name="data" id="vo" key="k">
+                <tr>
+                    <td><input type="checkbox" name="id[]" value="{$vo.cate_id}" /></td>
+                    <td>{$k}</td>
+                    <td>
+                        {$vo.level|str_repeat="-",###*8}{$vo.cate_name}
+                    </td>
+                    <td>
+                        {$vo.name}
+                    </td>
+                    <td>{$vo.cate_remark}</td>
+                    <td>{$vo.cate_addtime|date="Y-m-d",###}</td>
+                    <td>
+                        <a class="button border-blue button-little" href="__CONTROLLER__/edit/id/{$vo.cate_id}" >修改</a>
+                        <a class="button border-yellow button-little" href="__CONTROLLER__/delOne/id/{$vo.cate_id}" onclick="return confirm('您确认删除该记录吗？')">删除</a>
+                    </td>
+                </tr>
+            </volist>
+           
+        </table>
+
+    </div>
+    </form>
+    <br />
+    <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">拼图前端框架</a>构建</p>
+</div>
+
+</body>
+</html>

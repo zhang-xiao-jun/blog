@@ -1,0 +1,18 @@
+<h3>
+    <p>最新<span>文章</span></p>
+</h3>
+<ul class="rank">
+    <volist name="new_article" id="new_vo">
+        <li><a href="index.php/Home/Article/lst/id/{$new_vo.id}" title="Column 三栏布局 个人网站模板" target="_blank">{$new_vo.title}</a></li>
+    </volist>
+</ul>
+
+<!--点击排行-->
+<h3 class="ph">
+    <p>点击<span>排行</span></p>
+</h3>
+<ul class="paih">
+    <volist name="hits_article" id="hits_vo">
+        <li><a href="index.php/Home/Article/lst/id/{$hits_vo.id}" title="Column 三栏布局 个人网站模板" target="_blank">{$hits_vo.title}({$hits+10})</a></li>
+    </volist>
+</ul>
